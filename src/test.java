@@ -129,7 +129,7 @@ class scheduleTask {
 
 //Main class
 public class test {	
-	static int max,i,minScheduleTime=1000,minScheduleID=0;
+	static int max,i,minScheduleID=0;
 	static int[] height= new int[20];  							//Height of each node
 	static int chromosomes[][][] = new int[1001][5][20]; 		//Solution set (Population of 1000) 
 	static int minScheduleList[][] = new int[5][20];			//Processor - Task list of Min Schedule
@@ -138,8 +138,9 @@ public class test {
 	static int procAvT[] = new int[5];							//Processor available time
 	static scheduleTask taskData[] = new scheduleTask[20];		//Store schedule task data 
 	static int taskAtProc[][] = new int[1001][20];				//store which task schedule at which processor
-	
-	//Calculate Height of each node
+	static float minScheduleTime=10000;
+	static int finalprocAvT[] = new int[5];
+//	Calculate Height of each node
 	static int heightOfNode(int node)
 	{
 		if(node==0)
@@ -159,7 +160,7 @@ public class test {
 		
 	}
 	
-	//Calculate level order of each node and store it in height[]
+//	Calculate level order of each node and store it in height[]
 	static void calcLevelOrder()
 	{
 		int i=0,j=0,tmp;
@@ -187,15 +188,15 @@ public class test {
 				
 			}
 		}
-		System.out.print("Level Order : ");
-		for(i=0;i<input1.inputTask.no_of_task;i++)
-		{
-			System.out.print("_"+levelOrder[i]);
-		}
+	//	System.out.print("Level Order : ");
+	//	for(i=0;i<input1.inputTask.no_of_task;i++)
+	//	{
+	//		System.out.print("_"+levelOrder[i]);
+	//	}
 		
 	}
 	
-	//Create Population of 1000 Chromosomes and store it in chromosomes[][][]
+//	Create Population of 1000 Chromosomes and store it in chromosomes[][][]
 	static void createPopulation()
 	{	
 		int k,tmp,l,z;
@@ -234,16 +235,18 @@ public class test {
 		}
 	}
 
-	//Calculate max of two numbers
-	static int maX(int x,int y)
-	{
-		return x>y?x:y;
-	}
+//	Calculate max of two numbers
+		static int maX(int x,int y)
+		{
+			return x>y?x:y;
+		}
 	
-	//Calculate Fitness of a given chromosome 
-	static int fitNess(int id)
+//	Calculate Fitness of a given chromosome 
+	static float fitNess(int id)
 	{
-		int i=0,j,z,scheduleTime=0;
+		int i=0,j,z,maxF;
+		float fitness=0;
+		float sum=0;
 		for(i=0;i<20;i++)
 			taskData[i]=new scheduleTask();
 			
@@ -269,52 +272,25 @@ public class test {
 			procAvT[taskAtProc[id][levelOrder[i]]]=taskData[levelOrder[i]].FT;
 		}
 		//System.out.print(":");
-		scheduleTime=0;
+		maxF = 0;
+		sum =0;
 		for(i=0;i<5;i++)
 		{
-			if(scheduleTime<procAvT[i])
-				scheduleTime=procAvT[i];
+			sum+=procAvT[i];
+			if(maxF<procAvT[i])
+				maxF=procAvT[i];
 		}
 		//for(i=0;i<5;i++)
 		//{
 		//	System.out.print(procAvT[i]+" ");
 		//}
 		
-						
-		return scheduleTime;
+		fitness = maxF/(sum/(input1.inputProc.no_of_proc*maxF));				
+		return fitness;
 	}
 	
-	/*static void crossOver(int id1,int id2)
-	{
-		int trgt_task=0,j=0,i=0;
-		int task_array[] = new int[20];
-		int son1[][] = new int[5][20];
-		int son2[][] = new int[5][20];
-		Random rand = new Random();
-		trgt_task = rand.nextInt(input1.inputTask.no_of_task);
-		System.out.print(trgt_task+" ");
-		task_array[i] = trgt_task;
-		i++;
-		for(j=0;j<input1.inputTask.no_of_task;j++)
-		{				
-			if(input1.inputTask.comm_cost[trgt_task][j]>0)
-			{	
-				task_array[i] = j;
-				System.out.print(j+ " ");
-				i++;
-			}
-		}
-		for(i=0;i<input1.inputProc.no_of_proc;i++)
-		{
-			for(j=0;j<input1.inputTask.no_of_task;j++)
-			{
-				if()
-					son1[i][j] = chromosomes[id1][i][j];
-			}
-		}
-		
-	}
-	*/
+	
+//	Crossover	
 	
 	//Single point Crossover
 	static void crossOver(int id)
@@ -430,8 +406,10 @@ public class test {
 			if(minScheduleTime > fitNess(1000))
 			{
 				minScheduleTime = fitNess(1000);
+				
 				for(i=0;i<input1.inputProc.no_of_proc;i++)
 				{
+					finalprocAvT[i]=procAvT[i];
 					//System.out.print(i+1+"th Processor :");
 					for(j=0;j<input1.inputTask.no_of_task;j++)
 					{				
@@ -452,7 +430,7 @@ public class test {
 		//System.out.println(length1+" "+length2);
 	}
 
-	//Mutation of a given chromosome and calculate its Fitness
+//	Mutation of a given chromosome and calculate its Fitness
 	static void mutaTion(int id)
 	{
 		int i=0,j,z,scheduleTime=0,procNo=0,diff=0,maxDiff=0,nxtTask=0,tmp=0,parent=0;
@@ -463,7 +441,7 @@ public class test {
 		}
 		for(i=0;i<input1.inputProc.no_of_proc;i++)
 		{
-			//System.out.print(i+1+"th Processor :");
+//			System.out.print(i+1+"th Processor :");
 			for(j=0;j<input1.inputTask.no_of_task;j++)
 			{				
 				chromosomes[1000][i][j]=0;
@@ -484,12 +462,12 @@ public class test {
 			taskData[levelOrder[i]].taskNo = levelOrder[i];
 			taskData[levelOrder[i]].proc = taskAtProc[id][levelOrder[i]];
 			taskData[levelOrder[i]].ST =maX( procAvT[taskAtProc[id][levelOrder[i]]] , maxDAT);
-			//System.out.print(taskData[levelOrder[i]].ST+" ");
+//			System.out.print(taskData[levelOrder[i]].ST+" ");
 			taskData[levelOrder[i]].FT = taskData[levelOrder[i]].ST+input1.inputTask.exe_time[levelOrder[i]][taskAtProc[id][levelOrder[i]]];
-			//System.out.print(taskData[levelOrder[i]].FT+" ");
+//			System.out.print(taskData[levelOrder[i]].FT+" ");
 			procAvT[taskAtProc[id][levelOrder[i]]]=taskData[levelOrder[i]].FT;
 		}
-		//System.out.print(":");
+//		System.out.print(":");
 		scheduleTime=0;
 		for(i=0;i<5;i++)
 		{
@@ -500,10 +478,10 @@ public class test {
 			}
 			
 		}
-		//System.out.print(procNo+" ");
+//		System.out.print(procNo+" ");
 		i=0;
 		maxDiff = taskData[chromosomes[id][procNo][i]].ST;
-		//System.out.print(maxDiff+" ");
+//		System.out.print(maxDiff+" ");
 		while(i!=input1.inputTask.no_of_task && chromosomes[id][procNo][i+1]!=0)
 		{
 			diff = taskData[chromosomes[id][procNo][i+1]].ST -taskData[chromosomes[id][procNo][i]].FT;
@@ -513,9 +491,9 @@ public class test {
 				nxtTask = chromosomes[id][procNo][i+1];
 			}
 			i++;
-			//System.out.print(maxDiff);
+//			System.out.print(maxDiff);
 		}
-		//System.out.print(" "+nxtTask+" ");
+//		System.out.print(" "+nxtTask+" ");
 		
 		tmp =0 ;
 		for(j=0;j<input1.inputTask.no_of_task;j++)
@@ -526,7 +504,7 @@ public class test {
 				parent = j;
 			}
 		}
-		//System.out.print(parent);
+//		System.out.print(parent);
 		if(nxtTask==0 || procNo ==taskAtProc[id][parent] )
 		{
 			for(i=0;i<input1.inputProc.no_of_proc;i++)
@@ -563,7 +541,7 @@ public class test {
 			for(j=0;j<input1.inputTask.no_of_task;j++)
 			{		
 				chromosomes[1000][taskAtProc[id][parent]][j] = chromosomes[id][taskAtProc[id][parent]][tmp];
-				//System.out.println(" "+chromosomes[1000][taskAtProc[id][parent]][j]);
+//				System.out.println(" "+chromosomes[1000][taskAtProc[id][parent]][j]);
 				tmp++;
 				if(chromosomes[id][taskAtProc[id][parent]][tmp]==parent)
 				{
@@ -571,36 +549,36 @@ public class test {
 					while(height[chromosomes[id][taskAtProc[id][parent]][tmp]] < height[nxtTask] && chromosomes[id][taskAtProc[id][parent]][tmp]!=0 && j<input1.inputTask.no_of_task )
 					{				
 						chromosomes[1000][taskAtProc[id][parent]][j] = chromosomes[id][taskAtProc[id][parent]][tmp];
-						//System.out.println(" "+chromosomes[1000][taskAtProc[id][parent]][j]);
+//						System.out.println(" "+chromosomes[1000][taskAtProc[id][parent]][j]);
 						tmp++;
 						j++;
 					}
 					chromosomes[1000][taskAtProc[id][parent]][j] = nxtTask;
-					//System.out.println(" "+chromosomes[1000][taskAtProc[id][parent]][j]);
+//					System.out.println(" "+chromosomes[1000][taskAtProc[id][parent]][j]);
 				}		
 			}
 		}
-		//System.out.println();
-		/*
-		for(i=0;i<input1.inputProc.no_of_proc;i++)
-		{
-			for(j=0;j<input1.inputTask.no_of_task;j++)
-			{
-				System.out.print(chromosomes[id][i][j]+" ");
-			}
-			System.out.println();
-		}
-		System.out.println();
-		for(i=0;i<input1.inputProc.no_of_proc;i++)
-		{
-			for(j=0;j<input1.inputTask.no_of_task;j++)
-			{
-				System.out.print(chromosomes[1000][i][j]+" ");
-			}
-			System.out.println();
-		}
-		*/
-		//System.out.println("\n"+fitNess(id)+" "+fitNess(1000));
+//		System.out.println();
+//		/*
+//		for(i=0;i<input1.inputProc.no_of_proc;i++)
+//		{
+//			for(j=0;j<input1.inputTask.no_of_task;j++)
+//			{
+//				System.out.print(chromosomes[id][i][j]+" ");
+//			}
+//			System.out.println();
+//		}
+//		System.out.println();
+//		for(i=0;i<input1.inputProc.no_of_proc;i++)
+//		{
+//			for(j=0;j<input1.inputTask.no_of_task;j++)
+//			{
+//				System.out.print(chromosomes[1000][i][j]+" ");
+//			}
+//			System.out.println();
+//		}
+//		*/
+//		//System.out.println("\n"+fitNess(id)+" "+fitNess(1000));
 		for(i=0;i<input1.inputProc.no_of_proc;i++)
 		{
 			for(j=0;j<input1.inputTask.no_of_task;j++)
@@ -615,7 +593,8 @@ public class test {
 			minScheduleTime = fitNess(1000);
 			for(i=0;i<input1.inputProc.no_of_proc;i++)
 			{
-				//System.out.print(i+1+"th Processor :");
+				finalprocAvT[i]=procAvT[i];
+//				System.out.print(i+1+"th Processor :");
 				for(j=0;j<input1.inputTask.no_of_task;j++)
 				{				
 					minScheduleList[i][j]=0;
@@ -623,7 +602,7 @@ public class test {
 			}
 			for(i=0;i<input1.inputProc.no_of_proc;i++)
 			{
-				//System.out.print(i+1+"th Processor :");
+//				System.out.print(i+1+"th Processor :");
 				for(j=0;j<input1.inputTask.no_of_task;j++)
 				{				
 					minScheduleList[i][j]=chromosomes[1000][i][j];
@@ -639,13 +618,15 @@ public class test {
 			}
 			
 		}
-		//System.out.println("\n"+fitNess(id)+" "+fitNess(1000));
+//		System.out.println("\n"+fitNess(id)+" "+fitNess(1000));
 	}
 	
 	//Main function
 	public static void main(String args[])
 		{
-			int i,j=0;
+			int i,j=0,k;
+			float fitnessValue;
+			
 			Random rand = new Random();
 			input1.takeinput();
 			System.out.print("Height of each node : ");
@@ -659,30 +640,31 @@ public class test {
 			createPopulation(); //Population creation
 			System.out.println();
 			System.out.println("Schedule Time of each chromosome : ");
-			// Calculation fitness of chromosomes
+//			 Calculation fitness of chromosomes
 			for(int l = 0;l<1000;l++)
 			{
-				int fitnessValue = fitNess(l);
-				System.out.print(fitnessValue+" ");			
+				fitnessValue = fitNess(l);
+//				System.out.print(fitnessValue+" ");			
 				
 				if(minScheduleTime>fitnessValue)
 				{
 					minScheduleTime = fitnessValue;		
 					for(i=0;i<input1.inputProc.no_of_proc;i++)
 					{
+						finalprocAvT[i]=procAvT[i];
 						for(j=0;j<input1.inputTask.no_of_task;j++)
 						{
 							minScheduleList[i][j]=chromosomes[l][i][j];
-							//System.out.print(minScheduleList[i][j]);
+//							System.out.print(minScheduleList[i][j]);
 						}
 					}
 				}
 			}
 			System.out.println();
-			//Before Crossover Min Schedule
-			System.out.println("Before Ceossover :");
+//			Before Crossover Min Schedule
+			System.out.println("Before Crossover :");
 			
-			System.out.println("Min Schedule Time = " + minScheduleTime);
+//			System.out.println("Min Schedule Time = " + minScheduleTime);
 			for(i=0;i<input1.inputProc.no_of_proc;i++)
 			{
 				System.out.print(i+1+"th Processor :");
@@ -690,43 +672,88 @@ public class test {
 				{				
 					if(minScheduleList[i][j]==0 && j!=0)
 					{
-						System.out.println();
 						break;					
 					}					
 					System.out.print(" "+minScheduleList[i][j]);
-				}
+					
+				}System.out.print(" = "+finalprocAvT[i]+"\n");
+				
 			}
+			float maxZ=0,sum=0;
+			for(i=0;i<input1.inputProc.no_of_proc;i++)
+			{
+				sum+=finalprocAvT[i];
+				if(maxZ<finalprocAvT[i])
+					maxZ=finalprocAvT[i];
+			}
+			System.out.println("Schedule Time = "+maxZ);
+			System.out.println("Utilization = "+sum/(input1.inputProc.no_of_proc*maxZ));
 			// Crossover
+			for(k=0;k<10;k++){
 			for(i=0;i<1000;i++)
 			{			
 				crossOver(rand.nextInt(1000));	
 			}
-			//After crossover Min Schedule
-			System.out.println("\nAfter Ceossover :");
-			System.out.println("Min Schedule Time " + minScheduleTime);
+//			After crossover Min Schedule
+//			System.out.println("\nAfter Crossover :");
+//			System.out.println("Min Schedule Time " + minScheduleTime);
 		
-			for(i=0;i<input1.inputProc.no_of_proc;i++)
-			{
-				System.out.print(i+1+"th Processor :");
-				for(j=0;j<input1.inputTask.no_of_task;j++)
-				{				
-					if(minScheduleList[i][j]==0 && j!=0)
-					{
-						System.out.println();
-						break;					
-					}					
-					System.out.print(" "+minScheduleList[i][j]);
-				}
-			}
-			//Mutation
+//			for(i=0;i<input1.inputProc.no_of_proc;i++)
+//			{
+//				System.out.print(i+1+"th Processor :");
+//				for(j=0;j<input1.inputTask.no_of_task;j++)
+//				{				
+//					if(minScheduleList[i][j]==0 && j!=0)
+//					{
+//						break;					
+//					}					
+//					System.out.print(" "+minScheduleList[i][j]);
+//				}System.out.print(" = "+finalprocAvT[i]+"\n");
+//			}
+//			maxZ=0;sum=0;
+//			for(i=0;i<input1.inputProc.no_of_proc;i++)
+//			{
+//				sum+=finalprocAvT[i];
+//				if(maxZ<finalprocAvT[i])
+//					maxZ=finalprocAvT[i];
+//			}
+//			System.out.println("Schedule Time = "+maxZ);
+//			System.out.println("Utilization = "+sum/(input1.inputProc.no_of_proc*maxZ));
+
+//			Mutation
 			for(i=0;i<1000;i++)
 			{			
 				mutaTion(rand.nextInt(1000));	
 			}
-			//After Mutation Min Schedule
-			System.out.println("\nAfter Mutation :");
-			System.out.println("Min Schedule Time " + minScheduleTime);
+//			After Mutation Min Schedule
+//			System.out.println("\nAfter Mutation :");
+//			System.out.println("Min Schedule Time " + minScheduleTime);
 		
+//			for(i=0;i<input1.inputProc.no_of_proc;i++)
+//			{
+//				System.out.print(i+1+"th Processor :");
+//				for(j=0;j<input1.inputTask.no_of_task;j++)
+//				{				
+//					if(minScheduleList[i][j]==0 && j!=0)
+//					{
+//						break;					
+//					}					
+//					System.out.print(" "+minScheduleList[i][j]);
+//				}System.out.print(" = "+finalprocAvT[i]+"\n");
+//			}
+//			maxZ=0;sum=0;
+//			for(i=0;i<input1.inputProc.no_of_proc;i++)
+//			{
+//				sum+=finalprocAvT[i];
+//				if(maxZ<finalprocAvT[i])
+//					maxZ=finalprocAvT[i];
+//			}
+//			System.out.println("Schedule Time = "+maxZ);
+//			System.out.println("Utilization = "+sum/(input1.inputProc.no_of_proc*maxZ));
+////				System.out.print(fitNess(0)+" "+fitNess(1000));
+			}
+			System.out.println("\nAfter Mutation :");
+//			System.out.println("Min Schedule Time " + minScheduleTime);
 			for(i=0;i<input1.inputProc.no_of_proc;i++)
 			{
 				System.out.print(i+1+"th Processor :");
@@ -734,12 +761,19 @@ public class test {
 				{				
 					if(minScheduleList[i][j]==0 && j!=0)
 					{
-						System.out.println();
 						break;					
 					}					
 					System.out.print(" "+minScheduleList[i][j]);
-				}
+				}System.out.print(" = "+finalprocAvT[i]+"\n");
 			}
-			//	System.out.print(fitNess(0)+" "+fitNess(1000));
+			maxZ=0;sum=0;
+			for(i=0;i<input1.inputProc.no_of_proc;i++)
+			{
+				sum+=finalprocAvT[i];
+				if(maxZ<finalprocAvT[i])
+					maxZ=finalprocAvT[i];
+			}
+			System.out.println("Schedule Time = "+maxZ);
+			System.out.println("Utilization = "+sum/(input1.inputProc.no_of_proc*maxZ));
 		}
 }	

@@ -182,6 +182,78 @@ Min Schedule Time 89
 2th Processor : 3 7 8 9
 3th Processor : 0 4 5
 
+output : 5=================================
+
+No. of Task = 10
+No. of Processor = 3
+Tasks Execution time 10x3 = (14,16,9,)	(13,19,18,)	(11,13,19,)	(13,8,17,)	(12,13,10,)	(13,16,9,)	(7,15,11,)	(5,11,14,)	(18,12,20,)	(21,7,16,)	
+Communication delay of Processors 3x3 = (0,1,2,)	(2,0,1,)	(1,2,0,)	
+Communication cost between tasks 10x10 = 
+0 18 12 9 11 14 0 0 0 0 
+0 0 0 0 0 0 0 19 16 0 
+0 0 0 0 0 0 23 0 0 0 
+0 0 0 0 0 0 0 27 23 0 
+0 0 0 0 0 0 0 0 13 0 
+0 0 0 0 0 0 0 15 0 0 
+0 0 0 0 0 0 0 0 0 17 
+0 0 0 0 0 0 0 0 0 11 
+0 0 0 0 0 0 0 0 0 13 
+0 0 0 0 0 0 0 0 0 0 
+Height of each node :  0 1 1 1 1 1 2 2 2 3
+
+Schedule Time of each chromosome : 
+
+Before Crossover :
+1th Processor : 0 1 2 3 8 = 77
+2th Processor : 5 6 7 9 = 97
+3th Processor : 4 = 46
+Schedule Time = 97.0
+Utilization = 0.75601375
+
+After Crossover :
+1th Processor : 2 6 8 = 85
+2th Processor : 0 1 9 = 105
+3th Processor : 3 4 5 7 = 75
+Schedule Time = 105.0
+Utilization = 0.84126985
+
+After Mutation :
+1th Processor : 2 6 8 = 85
+2th Processor : 0 1 9 = 105
+3th Processor : 3 4 5 7 = 75
+Schedule Time = 105.0
+Utilization = 0.84126985
 
 
+No. of Task = 10
+No. of Processor = 3
+Tasks Execution time 10x3 = (14,16,9,)	(13,19,18,)	(11,13,19,)	(13,8,17,)	(12,13,10,)	(13,16,9,)	(7,15,11,)	(5,11,14,)	(18,12,20,)	(21,7,16,)	
+Communication delay of Processors 3x3 = (0,1,2,)	(2,0,1,)	(1,2,0,)	
+Communication cost between tasks 10x10 = 
+0 18 12 9 11 14 0 0 0 0 
+0 0 0 0 0 0 11 19 16 0 
+0 0 0 0 0 0 23 5 4 0 
+0 0 0 0 0 0 0 27 23 0 
+0 0 0 0 0 0 14 12 13 0 
+0 0 0 0 0 0 12 15 4 0 
+0 0 0 0 0 0 0 0 0 17 
+0 0 0 0 0 0 0 0 0 11 
+0 0 0 0 0 0 0 0 0 13 
+0 0 0 0 0 0 0 0 0 0 
+Height of each node :  0 1 1 1 1 1 2 2 2 3
 
+Schedule Time of each chromosome : 
+
+Before Crossover :
+1th Processor : 0 1 4 6 = 92
+2th Processor : 2 5 8 9 = 116
+3th Processor : 3 7 = 84
+Schedule Time = 116.0
+Utilization = 0.83908045
+
+After Mutation :
+1th Processor : 3 4 7 = 82
+2th Processor : 0 1 8 9 = 101
+3th Processor : 2 5 = 56
+Schedule Time = 101.0
+Utilization = 0.7887789
