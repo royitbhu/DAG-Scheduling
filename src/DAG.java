@@ -128,7 +128,7 @@ class scheduleTask {
 }
 
 //Main class
-public class test {	
+public class DAG {	
 	static int max,i,minScheduleID=0;
 	static int[] height= new int[20];  							//Height of each node
 	static int chromosomes[][][] = new int[1001][5][20]; 		//Solution set (Population of 1000) 
