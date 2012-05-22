@@ -3,7 +3,7 @@ import java.util.Random;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
-//Processor Data
+//PROCESSOR DATA
 class processor{
 	int no_of_proc;
 	int[][] comm_delay;
@@ -14,7 +14,7 @@ class processor{
 	}
 }
 
-//Task Data
+//TASK DATA
 class tasks{
 	int no_of_task;
 	int[][] comm_cost;
@@ -27,7 +27,7 @@ class tasks{
 	}
 }
 
-// Take input through File
+// TAKE INPUT THROUGH FILE
 class inputData {
 	tasks inputTask;
 	processor inputProc;
@@ -37,61 +37,62 @@ class inputData {
 		inputProc = new processor();
 	}
 	
-	public void takeinput()//takes input from file input.txt 
+	//TAKES INPUT FROM FILE INPUT.TXT
+	public void takeinput() 
 	{
 		try 
         	{
         	    	File file = new File("input.txt");
         	    	Scanner scanner = new Scanner(file);
         	    	
-        	    	//Input no. of Tasks and Processors
+        	    	//INPUT NO. OF TASKS AND PROCESSORS
         	    	String line = scanner.nextLine();
         	    	StringTokenizer st=new StringTokenizer(line," ");
         	    	inputTask.no_of_task = Integer.parseInt(st.nextToken());
         	    	inputProc.no_of_proc = Integer.parseInt(st.nextToken());
         	    	line = scanner.nextLine(); //for \n
-        	    	System.out.println("No. of Task = "+ inputTask.no_of_task);
-        	    	System.out.println("No. of Processor = "+ inputProc.no_of_proc);
+        	    	//System.out.println("No. of Task = "+ inputTask.no_of_task);
+        	    	//System.out.println("No. of Processor = "+ inputProc.no_of_proc);
         	    	
-        	    	//Input Computational cost(Execution time) of task on each processor
+        	    	//INPUT COMPUTATIONAL COST(EXECUTION TIME) OF TASK ON EACH PROCESSOR
         	    	int i=0,j=0;
-        	    	System.out.print("Tasks Execution time "+inputTask.no_of_task+"x"+inputProc.no_of_proc+" = ");
+        	    	//System.out.print("Tasks Execution time "+inputTask.no_of_task+"x"+inputProc.no_of_proc+" = ");
         	    	for(i=0;i<inputTask.no_of_task;i++)
         	    	{
         	    	   	line = scanner.nextLine();
 	        	    	st=new StringTokenizer(line," ");
-	        	    	System.out.print("(");
+	        	    	//System.out.print("(");
 	        	    	for(j=0;j<inputProc.no_of_proc;j++)
 	        	    	{
 	        	    		inputTask.exe_time[i][j] = Integer.parseInt(st.nextToken());
-	        	    		System.out.print(inputTask.exe_time[i][j]+",");
+	        	    		//System.out.print(inputTask.exe_time[i][j]+",");
 	        	    	}
-	        	    	System.out.print(")\t");
+	        	    	//System.out.print(")\t");
 	        	    	//System.out.println();
         	    	}
-        	    	System.out.println();
+        	    	//System.out.println();
         	    	line = scanner.nextLine(); //for \n
         	    	
-        	    	//Input Communication delay between processors 
-        	    	System.out.print("Communication delay of Processors "+inputProc.no_of_proc+"x"+inputProc.no_of_proc+" = ");
+        	    	//INPUT COMMUNICATION DELAY BETWEEN PROCESSORS 
+        	    	//System.out.print("Communication delay of Processors "+inputProc.no_of_proc+"x"+inputProc.no_of_proc+" = ");
         	    	for(i=0;i<inputProc.no_of_proc;i++)
         	    	{
         	    	   	line = scanner.nextLine();
 	        	    	st=new StringTokenizer(line," ");
-	        	    	System.out.print("(");
+	        	    	//System.out.print("(");
 	        	    	for(j=0;j<inputProc.no_of_proc;j++)
 	        	    	{
 	        	    		inputProc.comm_delay[i][j] = Integer.parseInt(st.nextToken());
-	        	    		System.out.print(inputProc.comm_delay[i][j]+",");
+	        	    		//System.out.print(inputProc.comm_delay[i][j]+",");
 	        	    	}
-	        	    	System.out.print(")\t");
+	        	    	//System.out.print(")\t");
 	        	    	//System.out.println();
         	    	}
-        	    	System.out.println();
+        	    	//System.out.println();
         	    	line = scanner.nextLine(); //for \n
         	    	
-        	    	//Input Data volume which is transmitted between two task
-        	    	System.out.println("Communication cost between tasks "+inputTask.no_of_task+"x"+inputTask.no_of_task+" = ");
+        	    	//INPUT DATA VOLUME WHICH IS TRANSMITTED BETWEEN TWO TASK
+        	    	//System.out.println("Communication cost between tasks "+inputTask.no_of_task+"x"+inputTask.no_of_task+" = ");
         	    	for(i=0;i<inputTask.no_of_task;i++)
         	    	{
         	    	   	line = scanner.nextLine();
@@ -99,14 +100,12 @@ class inputData {
 	        	    	for(j=0;j<inputTask.no_of_task;j++)
 	        	    	{
 	        	    		inputTask.comm_cost[i][j] = Integer.parseInt(st.nextToken());
-	        	    		System.out.print(inputTask.comm_cost[i][j]+" ");
+	        	    		//System.out.print(inputTask.comm_cost[i][j]+" ");
 	        	    	}
-	        	    	System.out.println();
+	        	    	//System.out.println();
         	    	}
-        	    	
         	    	//System.out.println(inputTask.no_of_task+"   "+inputProc.no_of_proc);
-        
-        	      
+            
         	}
 		catch (Exception e) {
     	    e.printStackTrace();
@@ -115,7 +114,7 @@ class inputData {
 	}
 }
 
-//Task starting time , finish time and processor after schedule
+//TASK STARTING TIME , FINISH TIME AND PROCESSOR AFTER SCHEDULE
 class scheduleTask {
 	int ST;
 	int FT;
@@ -130,17 +129,31 @@ class scheduleTask {
 //Main class
 public class DAG {	
 	static int max,i,minScheduleID=0;
-	static int[] height= new int[20];  							//Height of each node
-	static int chromosomes[][][] = new int[1001][5][20]; 		//Solution set (Population of 1000) 
-	static int minScheduleList[][] = new int[5][20];			//Processor - Task list of Min Schedule
-	static int[] levelOrder =new int[20];						//Task precedence int the order of their level  
-	static inputData input1 = new inputData();					//store input  
-	static int procAvT[] = new int[5];							//Processor available time
-	static scheduleTask taskData[] = new scheduleTask[20];		//Store schedule task data 
-	static int taskAtProc[][] = new int[1001][20];				//store which task schedule at which processor
+	
+	//HEIGHT OF EACH NODE(FROM ROOT)
+	static int[] height;
+	//DECLARE AND DEFINE POP SIZE
+	static int pop_size = 100;
+	//Solution set (Population EQUAL TO POP_SIZE)
+	static int [][][] chromosomes; 		 
+	//Processor - Task list of Min Schedule
+	static int minScheduleList[][];			
+	//TASK PRECEDENCE INT THE ORDER OF THEIR LEVEL
+	static int[] levelOrder;						  
+	//CREATE OBJECT OF INPUT
+	static inputData input1 = new inputData();					  
+	//PROCESSOR AVAILABLE TIME
+	static int procAvT[];							
+	//STORE SCHEDULE TASK DATA
+	static scheduleTask taskData[];		 
+	//STORE WHICH TASK SCHEDULE AT WHICH PROCESSOR
+	static int taskAtProc[][];
+	//INITIALIZE THE MAKESPAN WITH A HIGHER VALUE
 	static float minScheduleTime=10000;
-	static int finalprocAvT[] = new int[5];
-//	Calculate Height of each node
+	//STORES FINAL PROCESSOR AVAILABLE TIME OF EACH PROCESSORS
+	static int finalprocAvT[];
+	
+	//Calculate Height of each node
 	static int heightOfNode(int node)
 	{
 		if(node==0)
@@ -160,11 +173,11 @@ public class DAG {
 		
 	}
 	
-//	Calculate level order of each node and store it in height[]
+	//Calculate level order of each node and store it in height[]
 	static void calcLevelOrder()
 	{
 		int i=0,j=0,tmp;
-		int[] tmpHeight =new int[20];
+		int[] tmpHeight =new int[input1.inputTask.no_of_task];
 		for(i=0;i<input1.inputTask.no_of_task;i++)
 		{
 			levelOrder[i]=i;
@@ -188,25 +201,24 @@ public class DAG {
 				
 			}
 		}
-	//	System.out.print("Level Order : ");
-	//	for(i=0;i<input1.inputTask.no_of_task;i++)
-	//	{
-	//		System.out.print("_"+levelOrder[i]);
-	//	}
-		
+		/*	
+	 	System.out.print("Level Order : ");
+		for(i=0;i<input1.inputTask.no_of_task;i++)
+		{
+			System.out.print("_"+levelOrder[i]);
+		}*/
 	}
 	
-//	Create Population of 1000 Chromosomes and store it in chromosomes[][][]
+	//CREATE POPULATION OF 1000 CHROMOSOMES AND STORE IT IN CHROMOSOMES[][][]
 	static void createPopulation()
 	{	
 		int k,tmp,l,z;
 		Random rand = new Random();
-		int counter[] = new int[5];
+		int counter[] = new int[input1.inputProc.no_of_proc];
 		calcLevelOrder();
-		for(l=0;l<1000;l++) // Populatio 1000
+		for(l=0;l<pop_size;l++) // Populatio 1000
 		{
-			//System.out.print(l+" ");
-			for(z=0;z<5;z++)
+			for(z=0;z<input1.inputProc.no_of_proc;z++)
 			{
 				counter[z]=0;
 			}
@@ -235,22 +247,22 @@ public class DAG {
 		}
 	}
 
-//	Calculate max of two numbers
-		static int maX(int x,int y)
+	//Calculate max of two numbers
+	static int maX(int x,int y)
 		{
 			return x>y?x:y;
 		}
 	
-//	Calculate Fitness of a given chromosome 
+	//CALCULATE FITNESS OF A GIVEN CHROMOSOME 
 	static float fitNess(int id)
 	{
 		int i=0,j,z,maxF;
 		float fitness=0;
 		float sum=0;
-		for(i=0;i<20;i++)
+		for(i=0;i<input1.inputTask.no_of_task;i++)
 			taskData[i]=new scheduleTask();
 			
-		for(z=0;z<5;z++)
+		for(z=0;z<input1.inputProc.no_of_proc;z++)
 		{
 			procAvT[z]=0;
 		}
@@ -274,7 +286,7 @@ public class DAG {
 		//System.out.print(":");
 		maxF = 0;
 		sum =0;
-		for(i=0;i<5;i++)
+		for(i=0;i<input1.inputProc.no_of_proc;i++)
 		{
 			sum+=procAvT[i];
 			if(maxF<procAvT[i])
@@ -290,9 +302,7 @@ public class DAG {
 	}
 	
 	
-//	Crossover	
-	
-	//Single point Crossover
+	//SINGLE POINT CROSSOVER
 	static void crossOver(int id)
 	{
 		int proc1,proc2,length1=0,length2=0,i=0,j=0,divide1=0,divide2=0,tmp1,tmp2;		
@@ -304,12 +314,12 @@ public class DAG {
 			//System.out.print(i+1+"th Processor :");
 			for(j=0;j<input1.inputTask.no_of_task;j++)
 			{				
-				chromosomes[1000][i][j]=0;
+				chromosomes[pop_size][i][j]=0;
 			}
 		}
 		for(j=0;j<input1.inputTask.no_of_task;j++)
 		{
-			taskAtProc[1000][j] = 0;
+			taskAtProc[pop_size][j] = 0;
 		}
 		while(true)
 		{
@@ -317,7 +327,7 @@ public class DAG {
 			if(proc2!=proc1)
 				break;
 		}
-		while(true)
+		while(i<input1.inputTask.no_of_task)
 		{
 			if(length1==0 && chromosomes[id][proc1][i]==0)
 				length1++;
@@ -328,7 +338,7 @@ public class DAG {
 			i++;
 		}
 		i=0;
-		while(true)
+		while(i<input1.inputTask.no_of_task)
 		{
 			if(length2==0 && chromosomes[id][proc2][i]==0)
 				length2++;
@@ -353,28 +363,31 @@ public class DAG {
 				for(j=0;j<input1.inputTask.no_of_task;j++)
 				{
 					if(i!=proc1 && i!=proc2)
-						chromosomes[1000][i][j] = chromosomes[id][i][j];
+						chromosomes[pop_size][i][j] = chromosomes[id][i][j];
 				}
 			}
 			tmp1=divide1;
 			tmp2=divide2;
+			//System.out.print(divide1+" "+divide2+"\t");
 			for(j=0;j<divide1;j++)
 			{
-						chromosomes[1000][proc1][j] = chromosomes[id][proc1][j];
+						chromosomes[pop_size][proc1][j] = chromosomes[id][proc1][j];
 			}
 			for(j=0;j<divide2;j++)
 			{
-						chromosomes[1000][proc2][j] = chromosomes[id][proc2][j];
+				chromosomes[pop_size][proc2][j] = chromosomes[id][proc2][j];
 			}
-			for(j=divide1;j<input1.inputTask.no_of_task;j++)
+			for(j=divide1;j<input1.inputTask.no_of_task && tmp2<input1.inputTask.no_of_task;j++)
 			{
-						chromosomes[1000][proc1][j] = chromosomes[id][proc2][tmp2];
-						tmp2++;
+				//System.out.print("t2 "+tmp2);
+				chromosomes[pop_size][proc1][j] = chromosomes[id][proc2][tmp2];
+				tmp2++;
 			}
-			for(j=divide2;j<input1.inputTask.no_of_task;j++)
+			for(j=divide2;j<input1.inputTask.no_of_task && tmp1<input1.inputTask.no_of_task;j++)
 			{
-						chromosomes[1000][proc2][j] = chromosomes[id][proc1][tmp1];
-						tmp1++;
+				//System.out.print("t1 "+tmp1);		
+				chromosomes[pop_size][proc2][j] = chromosomes[id][proc1][tmp1];
+				tmp1++;
 			}
 			/*
 			for(i=0;i<input1.inputProc.no_of_proc;i++)
@@ -398,14 +411,14 @@ public class DAG {
 			{
 				for(j=0;j<input1.inputTask.no_of_task;j++)
 				{
-					if(chromosomes[1000][i][j]==0 && j!=0)
+					if(chromosomes[pop_size][i][j]==0 && j!=0)
 						break;
-						taskAtProc[1000][chromosomes[1000][i][j]] = i;
+						taskAtProc[pop_size][chromosomes[pop_size][i][j]] = i;
 				}
 			}
-			if(minScheduleTime > fitNess(1000))
+			if(minScheduleTime > fitNess(pop_size))
 			{
-				minScheduleTime = fitNess(1000);
+				minScheduleTime = fitNess(pop_size);
 				
 				for(i=0;i<input1.inputProc.no_of_proc;i++)
 				{
@@ -421,8 +434,8 @@ public class DAG {
 					//System.out.print(i+1+"th Processor :");
 					for(j=0;j<input1.inputTask.no_of_task;j++)
 					{				
-						minScheduleList[i][j]=chromosomes[1000][i][j];
-						chromosomes[id][i][j]=chromosomes[1000][i][j];
+						minScheduleList[i][j]=chromosomes[pop_size][i][j];
+						chromosomes[id][i][j]=chromosomes[pop_size][i][j];
 					}
 				}	
 			}
@@ -430,26 +443,26 @@ public class DAG {
 		//System.out.println(length1+" "+length2);
 	}
 
-//	Mutation of a given chromosome and calculate its Fitness
+	//Mutation of a given chromosome and calculate its Fitness
 	static void mutaTion(int id)
 	{
 		int i=0,j,z,scheduleTime=0,procNo=0,diff=0,maxDiff=0,nxtTask=0,tmp=0,parent=0;
 			
-		for(z=0;z<5;z++)
+		for(z=0;z<input1.inputProc.no_of_proc;z++)
 		{
 			procAvT[z]=0;
 		}
 		for(i=0;i<input1.inputProc.no_of_proc;i++)
 		{
-//			System.out.print(i+1+"th Processor :");
+			//System.out.print(i+1+"th Processor :");
 			for(j=0;j<input1.inputTask.no_of_task;j++)
 			{				
-				chromosomes[1000][i][j]=0;
+				chromosomes[pop_size][i][j]=0;
 			}
 		}
 		for(j=0;j<input1.inputTask.no_of_task;j++)
 		{
-			taskAtProc[1000][j] = 0;
+			taskAtProc[pop_size][j] = 0;
 		}
 		for(i=0;i<input1.inputTask.no_of_task;i++)
 		{
@@ -462,14 +475,14 @@ public class DAG {
 			taskData[levelOrder[i]].taskNo = levelOrder[i];
 			taskData[levelOrder[i]].proc = taskAtProc[id][levelOrder[i]];
 			taskData[levelOrder[i]].ST =maX( procAvT[taskAtProc[id][levelOrder[i]]] , maxDAT);
-//			System.out.print(taskData[levelOrder[i]].ST+" ");
+			//System.out.print(taskData[levelOrder[i]].ST+" ");
 			taskData[levelOrder[i]].FT = taskData[levelOrder[i]].ST+input1.inputTask.exe_time[levelOrder[i]][taskAtProc[id][levelOrder[i]]];
-//			System.out.print(taskData[levelOrder[i]].FT+" ");
+			//System.out.print(taskData[levelOrder[i]].FT+" ");
 			procAvT[taskAtProc[id][levelOrder[i]]]=taskData[levelOrder[i]].FT;
 		}
-//		System.out.print(":");
+		//System.out.print(":");
 		scheduleTime=0;
-		for(i=0;i<5;i++)
+		for(i=0;i<input1.inputProc.no_of_proc;i++)
 		{
 			if(scheduleTime<procAvT[i])
 			{
@@ -478,11 +491,11 @@ public class DAG {
 			}
 			
 		}
-//		System.out.print(procNo+" ");
+		//System.out.print(procNo+" ");
 		i=0;
 		maxDiff = taskData[chromosomes[id][procNo][i]].ST;
-//		System.out.print(maxDiff+" ");
-		while(i!=input1.inputTask.no_of_task && chromosomes[id][procNo][i+1]!=0)
+		//System.out.print(maxDiff+" ");
+		while(i<input1.inputTask.no_of_task && chromosomes[id][procNo][i+1]!=0)
 		{
 			diff = taskData[chromosomes[id][procNo][i+1]].ST -taskData[chromosomes[id][procNo][i]].FT;
 			if(maxDiff < diff )
@@ -491,9 +504,9 @@ public class DAG {
 				nxtTask = chromosomes[id][procNo][i+1];
 			}
 			i++;
-//			System.out.print(maxDiff);
+			//System.out.print(maxDiff);
 		}
-//		System.out.print(" "+nxtTask+" ");
+		//System.out.print(" "+nxtTask+" ");
 		
 		tmp =0 ;
 		for(j=0;j<input1.inputTask.no_of_task;j++)
@@ -504,14 +517,14 @@ public class DAG {
 				parent = j;
 			}
 		}
-//		System.out.print(parent);
+		//System.out.print(parent);
 		if(nxtTask==0 || procNo ==taskAtProc[id][parent] )
 		{
 			for(i=0;i<input1.inputProc.no_of_proc;i++)
 			{
 				for(j=0;j<input1.inputTask.no_of_task;j++)
 				{
-					chromosomes[1000][i][j] = chromosomes[id][i][j];
+					chromosomes[pop_size][i][j] = chromosomes[id][i][j];
 				}
 			}
 		}
@@ -523,7 +536,7 @@ public class DAG {
 				for(j=0;j<input1.inputTask.no_of_task;j++)
 				{
 					if(i!=taskAtProc[id][parent] && i!=procNo)
-						chromosomes[1000][i][j] = chromosomes[id][i][j];
+						chromosomes[pop_size][i][j] = chromosomes[id][i][j];
 				}
 			}
 			tmp = 0;
@@ -533,68 +546,68 @@ public class DAG {
 				{
 					j++;
 				}
-					chromosomes[1000][procNo][tmp] = chromosomes[id][procNo][j];
+					chromosomes[pop_size][procNo][tmp] = chromosomes[id][procNo][j];
 					tmp++;
 			}
-			chromosomes[1000][procNo][tmp]=0;
+			chromosomes[pop_size][procNo][tmp]=0;
 			tmp=0;
 			for(j=0;j<input1.inputTask.no_of_task;j++)
 			{		
-				chromosomes[1000][taskAtProc[id][parent]][j] = chromosomes[id][taskAtProc[id][parent]][tmp];
-//				System.out.println(" "+chromosomes[1000][taskAtProc[id][parent]][j]);
+				chromosomes[pop_size][taskAtProc[id][parent]][j] = chromosomes[id][taskAtProc[id][parent]][tmp];
+				//System.out.println(" "+chromosomes[1000][taskAtProc[id][parent]][j]);
 				tmp++;
-				if(chromosomes[id][taskAtProc[id][parent]][tmp]==parent)
+				if(tmp<input1.inputTask.no_of_task  && chromosomes[id][taskAtProc[id][parent]][tmp]==parent)
 				{
 					j++;
-					while(height[chromosomes[id][taskAtProc[id][parent]][tmp]] < height[nxtTask] && chromosomes[id][taskAtProc[id][parent]][tmp]!=0 && j<input1.inputTask.no_of_task )
+					while(height[chromosomes[id][taskAtProc[id][parent]][tmp]] < height[nxtTask] && chromosomes[id][taskAtProc[id][parent]][tmp]!=0 && j<input1.inputTask.no_of_task && tmp< input1.inputTask.no_of_task  )
 					{				
-						chromosomes[1000][taskAtProc[id][parent]][j] = chromosomes[id][taskAtProc[id][parent]][tmp];
-//						System.out.println(" "+chromosomes[1000][taskAtProc[id][parent]][j]);
+						chromosomes[pop_size][taskAtProc[id][parent]][j] = chromosomes[id][taskAtProc[id][parent]][tmp];
+						//System.out.println(" "+chromosomes[1000][taskAtProc[id][parent]][j]);
 						tmp++;
 						j++;
 					}
-					chromosomes[1000][taskAtProc[id][parent]][j] = nxtTask;
-//					System.out.println(" "+chromosomes[1000][taskAtProc[id][parent]][j]);
+					chromosomes[pop_size][taskAtProc[id][parent]][j] = nxtTask;
+					//System.out.println(" "+chromosomes[1000][taskAtProc[id][parent]][j]);
 				}		
 			}
 		}
-//		System.out.println();
-//		/*
-//		for(i=0;i<input1.inputProc.no_of_proc;i++)
-//		{
-//			for(j=0;j<input1.inputTask.no_of_task;j++)
-//			{
-//				System.out.print(chromosomes[id][i][j]+" ");
-//			}
-//			System.out.println();
-//		}
-//		System.out.println();
-//		for(i=0;i<input1.inputProc.no_of_proc;i++)
-//		{
-//			for(j=0;j<input1.inputTask.no_of_task;j++)
-//			{
-//				System.out.print(chromosomes[1000][i][j]+" ");
-//			}
-//			System.out.println();
-//		}
-//		*/
-//		//System.out.println("\n"+fitNess(id)+" "+fitNess(1000));
+		/*System.out.println();
+		
 		for(i=0;i<input1.inputProc.no_of_proc;i++)
 		{
 			for(j=0;j<input1.inputTask.no_of_task;j++)
 			{
-				if(chromosomes[1000][i][j]==0 && j!=0)
+				System.out.print(chromosomes[id][i][j]+" ");
+			}
+			System.out.println();
+		}
+		System.out.println();
+		for(i=0;i<input1.inputProc.no_of_proc;i++)
+		{
+			for(j=0;j<input1.inputTask.no_of_task;j++)
+			{
+				System.out.print(chromosomes[1000][i][j]+" ");
+			}
+			System.out.println();
+		}
+		*/
+		//System.out.println("\n"+fitNess(id)+" "+fitNess(1000));
+		for(i=0;i<input1.inputProc.no_of_proc;i++)
+		{
+			for(j=0;j<input1.inputTask.no_of_task;j++)
+			{
+				if(chromosomes[pop_size][i][j]==0 && j!=0)
 					break;
-					taskAtProc[1000][chromosomes[1000][i][j]] = i;
+					taskAtProc[pop_size][chromosomes[pop_size][i][j]] = i;
 			}
 		}
-		if(minScheduleTime > fitNess(1000))
+		if(minScheduleTime > fitNess(pop_size))
 		{
-			minScheduleTime = fitNess(1000);
+			minScheduleTime = fitNess(pop_size);
 			for(i=0;i<input1.inputProc.no_of_proc;i++)
 			{
 				finalprocAvT[i]=procAvT[i];
-//				System.out.print(i+1+"th Processor :");
+				//System.out.print(i+1+"th Processor :");
 				for(j=0;j<input1.inputTask.no_of_task;j++)
 				{				
 					minScheduleList[i][j]=0;
@@ -602,49 +615,62 @@ public class DAG {
 			}
 			for(i=0;i<input1.inputProc.no_of_proc;i++)
 			{
-//				System.out.print(i+1+"th Processor :");
+				//System.out.print(i+1+"th Processor :");
 				for(j=0;j<input1.inputTask.no_of_task;j++)
 				{				
-					minScheduleList[i][j]=chromosomes[1000][i][j];
-					chromosomes[id][i][j]=chromosomes[1000][i][j];
+					minScheduleList[i][j]=chromosomes[pop_size][i][j];
+					chromosomes[id][i][j]=chromosomes[pop_size][i][j];
 				}
 			}
 			for(i=0;i<input1.inputProc.no_of_proc;i++)
 			{
 				for(j=0;j<input1.inputTask.no_of_task;j++)
 				{
-					taskAtProc[id][j] = taskAtProc[1000][j];
+					taskAtProc[id][j] = taskAtProc[pop_size][j];
 				}
 			}
 			
 		}
-//		System.out.println("\n"+fitNess(id)+" "+fitNess(1000));
+		//System.out.println("\n"+fitNess(id)+" "+fitNess(1000));
 	}
 	
-	//Main function
+	//MAIN METHOD
 	public static void main(String args[])
 		{
 			int i,j=0,k;
-			float fitnessValue;
 			
+			float fitnessValue;
+			//NO OF GENERATIONS
+			int gen=5;
 			Random rand = new Random();
 			input1.takeinput();
-			System.out.print("Height of each node : ");
+			
+			height= new int[input1.inputTask.no_of_task];
+			chromosomes = new int[pop_size+1][input1.inputProc.no_of_proc][input1.inputTask.no_of_task];
+			minScheduleList = new int[input1.inputProc.no_of_proc][input1.inputTask.no_of_task];
+			levelOrder =new int[input1.inputTask.no_of_task];
+			procAvT = new int[input1.inputProc.no_of_proc];
+			taskData = new scheduleTask[input1.inputTask.no_of_task];
+			taskAtProc = new int[pop_size+1][input1.inputTask.no_of_task];
+			finalprocAvT = new int[input1.inputProc.no_of_proc];
+			
+			//System.out.print("Height of each node : ");
 			for(j=0;j<input1.inputTask.no_of_task;j++)
 			{	
 				height[j] = heightOfNode(j);
-				System.out.print(" "+height[j]);
+				//System.out.print(" "+height[j]);
 			}
-			System.out.println();
+			//System.out.println();
 			
-			createPopulation(); //Population creation
-			System.out.println();
-			System.out.println("Schedule Time of each chromosome : ");
-//			 Calculation fitness of chromosomes
-			for(int l = 0;l<1000;l++)
+			//POPULATION CREATION
+			createPopulation(); 
+			//System.out.println();
+			//System.out.println("Schedule Time of each chromosome : ");
+			//CALCULATION FITNESS OF CHROMOSOMES
+			for(int l = 0;l<pop_size;l++)
 			{
 				fitnessValue = fitNess(l);
-//				System.out.print(fitnessValue+" ");			
+				//System.out.print(fitnessValue+" ");			
 				
 				if(minScheduleTime>fitnessValue)
 				{
@@ -655,16 +681,16 @@ public class DAG {
 						for(j=0;j<input1.inputTask.no_of_task;j++)
 						{
 							minScheduleList[i][j]=chromosomes[l][i][j];
-//							System.out.print(minScheduleList[i][j]);
+							//System.out.print(minScheduleList[i][j]);
 						}
 					}
 				}
 			}
-			System.out.println();
-//			Before Crossover Min Schedule
+			//System.out.println();
+			//BEFORE CROSSOVER MIN SCHEDULE
 			System.out.println("Before Crossover :");
 			
-//			System.out.println("Min Schedule Time = " + minScheduleTime);
+			//System.out.println("Min Schedule Time = " + minScheduleTime);
 			for(i=0;i<input1.inputProc.no_of_proc;i++)
 			{
 				System.out.print(i+1+"th Processor :");
@@ -677,8 +703,8 @@ public class DAG {
 					System.out.print(" "+minScheduleList[i][j]);
 					
 				}System.out.print(" = "+finalprocAvT[i]+"\n");
-				
 			}
+
 			float maxZ=0,sum=0;
 			for(i=0;i<input1.inputProc.no_of_proc;i++)
 			{
@@ -688,72 +714,75 @@ public class DAG {
 			}
 			System.out.println("Schedule Time = "+maxZ);
 			System.out.println("Utilization = "+sum/(input1.inputProc.no_of_proc*maxZ));
-			// Crossover
-			for(k=0;k<10;k++){
-			for(i=0;i<1000;i++)
-			{			
-				crossOver(rand.nextInt(1000));	
-			}
-//			After crossover Min Schedule
-//			System.out.println("\nAfter Crossover :");
-//			System.out.println("Min Schedule Time " + minScheduleTime);
-		
-//			for(i=0;i<input1.inputProc.no_of_proc;i++)
-//			{
-//				System.out.print(i+1+"th Processor :");
-//				for(j=0;j<input1.inputTask.no_of_task;j++)
-//				{				
-//					if(minScheduleList[i][j]==0 && j!=0)
-//					{
-//						break;					
-//					}					
-//					System.out.print(" "+minScheduleList[i][j]);
-//				}System.out.print(" = "+finalprocAvT[i]+"\n");
-//			}
-//			maxZ=0;sum=0;
-//			for(i=0;i<input1.inputProc.no_of_proc;i++)
-//			{
-//				sum+=finalprocAvT[i];
-//				if(maxZ<finalprocAvT[i])
-//					maxZ=finalprocAvT[i];
-//			}
-//			System.out.println("Schedule Time = "+maxZ);
-//			System.out.println("Utilization = "+sum/(input1.inputProc.no_of_proc*maxZ));
-
-//			Mutation
-			for(i=0;i<1000;i++)
-			{			
-				mutaTion(rand.nextInt(1000));	
-			}
-//			After Mutation Min Schedule
-//			System.out.println("\nAfter Mutation :");
-//			System.out.println("Min Schedule Time " + minScheduleTime);
-		
-//			for(i=0;i<input1.inputProc.no_of_proc;i++)
-//			{
-//				System.out.print(i+1+"th Processor :");
-//				for(j=0;j<input1.inputTask.no_of_task;j++)
-//				{				
-//					if(minScheduleList[i][j]==0 && j!=0)
-//					{
-//						break;					
-//					}					
-//					System.out.print(" "+minScheduleList[i][j]);
-//				}System.out.print(" = "+finalprocAvT[i]+"\n");
-//			}
-//			maxZ=0;sum=0;
-//			for(i=0;i<input1.inputProc.no_of_proc;i++)
-//			{
-//				sum+=finalprocAvT[i];
-//				if(maxZ<finalprocAvT[i])
-//					maxZ=finalprocAvT[i];
-//			}
-//			System.out.println("Schedule Time = "+maxZ);
-//			System.out.println("Utilization = "+sum/(input1.inputProc.no_of_proc*maxZ));
-////				System.out.print(fitNess(0)+" "+fitNess(1000));
+			
+			// CROSSOVER
+			for(k=0;k<gen;k++)
+			{
+				for(i=0;i<pop_size;i++)
+				{			
+					crossOver(rand.nextInt(pop_size));	
+				}
+				/*After crossover Min Schedule
+				System.out.println("\nAfter Crossover :");
+				System.out.println("Min Schedule Time " + minScheduleTime);
+			
+				for(i=0;i<input1.inputProc.no_of_proc;i++)
+				{
+					System.out.print(i+1+"th Processor :");
+					for(j=0;j<input1.inputTask.no_of_task;j++)
+					{				
+						if(minScheduleList[i][j]==0 && j!=0)
+						{
+							break;					
+						}					
+						System.out.print(" "+minScheduleList[i][j]);
+					}System.out.print(" = "+finalprocAvT[i]+"\n");
+				}
+				maxZ=0;sum=0;
+				for(i=0;i<input1.inputProc.no_of_proc;i++)
+				{
+					sum+=finalprocAvT[i];
+					if(maxZ<finalprocAvT[i])
+						maxZ=finalprocAvT[i];
+				}
+				System.out.println("Schedule Time = "+maxZ);
+				System.out.println("Utilization = "+sum/(input1.inputProc.no_of_proc*maxZ));*/
+	
+				//MUTATION
+				for(i=0;i<pop_size;i++)
+				{			
+					mutaTion(rand.nextInt(pop_size));	
+				}
+				/*After Mutation Min Schedule
+				System.out.println("\nAfter Mutation :");
+				System.out.println("Min Schedule Time " + minScheduleTime);*/
+			
+				/*for(i=0;i<input1.inputProc.no_of_proc;i++)
+				{
+					System.out.print(i+1+"th Processor :");
+					for(j=0;j<input1.inputTask.no_of_task;j++)
+					{				
+						if(minScheduleList[i][j]==0 && j!=0)
+						{
+							break;					
+						}					
+						System.out.print(" "+minScheduleList[i][j]);
+					}System.out.print(" = "+finalprocAvT[i]+"\n");
+				}
+				maxZ=0;sum=0;
+				for(i=0;i<input1.inputProc.no_of_proc;i++)
+				{
+					sum+=finalprocAvT[i];
+					if(maxZ<finalprocAvT[i])
+						maxZ=finalprocAvT[i];
+				}*/
+				//System.out.println("Schedule Time = "+maxZ);
+				//System.out.println("Utilization = "+sum/(input1.inputProc.no_of_proc*maxZ));
+				
+				//System.out.print(fitNess(0)+" "+fitNess(pop_size));
 			}
 			System.out.println("\nAfter Mutation :");
-//			System.out.println("Min Schedule Time " + minScheduleTime);
+			//System.out.println("Min Schedule Time " + minScheduleTime);
 			for(i=0;i<input1.inputProc.no_of_proc;i++)
 			{
 				System.out.print(i+1+"th Processor :");
