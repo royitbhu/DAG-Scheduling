@@ -10,7 +10,7 @@ class processor{
 	
 	processor(){
 		no_of_proc = 0;
-		comm_delay = new int[5][5];
+		
 	}
 }
 
@@ -22,20 +22,15 @@ class tasks{
 	
 	tasks(){
 		no_of_task = 0;
-		comm_cost = new int[20][20];
-		exe_time = new int[20][5];
+		
 	}
 }
 
 // TAKE INPUT THROUGH FILE
 class inputData {
-	tasks inputTask;
-	processor inputProc;
+	tasks inputTask=new tasks();
+	processor inputProc=new processor();
 	
-	inputData()	{
-		inputTask = new tasks();
-		inputProc = new processor();
-	}
 	
 	//TAKES INPUT FROM FILE INPUT.TXT
 	public void takeinput() 
@@ -50,7 +45,12 @@ class inputData {
         	    	StringTokenizer st=new StringTokenizer(line," ");
         	    	inputTask.no_of_task = Integer.parseInt(st.nextToken());
         	    	inputProc.no_of_proc = Integer.parseInt(st.nextToken());
-        	    	line = scanner.nextLine(); //for \n
+        	    	
+        	    	inputProc.comm_delay = new int[inputProc.no_of_proc][inputProc.no_of_proc];
+        			inputTask.comm_cost = new int[inputTask.no_of_task][inputTask.no_of_task];
+        			inputTask.exe_time = new int[inputTask.no_of_task][inputProc.no_of_proc];
+        	    	
+        			line = scanner.nextLine(); //for \n
         	    	//System.out.println("No. of Task = "+ inputTask.no_of_task);
         	    	//System.out.println("No. of Processor = "+ inputProc.no_of_proc);
         	    	
@@ -566,8 +566,10 @@ public class DAG {
 						tmp++;
 						j++;
 					}
+					if(j<input1.inputTask.no_of_task)
+					//System.out.print(" "+j);
 					chromosomes[pop_size][taskAtProc[id][parent]][j] = nxtTask;
-					//System.out.println(" "+chromosomes[1000][taskAtProc[id][parent]][j]);
+					
 				}		
 			}
 		}

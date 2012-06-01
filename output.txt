@@ -1,0 +1,86 @@
+//input 1:
+10 3
+
+14 16 9
+13 19 18
+11 13 19
+13 8 17
+12 13 10
+13 16 9
+7 15 11
+5 11 14
+18 12 20
+21 7 16
+
+0 1 2 
+2 0 1
+1 2 0
+
+0 18 12 9 11 14 0 0 0 0
+0 0 0 0 0 0 11 19 16 0
+0 0 0 0 0 0 23 5 4 0
+0 0 0 0 0 0 0 27 23 0
+0 0 0 0 0 0 14 12 13 0
+0 0 0 0 0 0 12 15 4 0
+0 0 0 0 0 0 0 0 0 17
+0 0 0 0 0 0 0 0 0 11
+0 0 0 0 0 0 0 0 0 13
+0 0 0 0 0 0 0 0 0 0
+
+Before Crossover :
+1th Processor : 0 3 5 8 = 101
+2th Processor : 1 6 9 = 125
+3th Processor : 2 4 7 = 95
+Schedule Time = 125.0
+Utilization = 0.856
+
+After Mutation :
+1th Processor : 4 6 = 76
+2th Processor : 3 8 9 = 105
+3th Processor : 0 1 2 5 7 = 76
+Schedule Time = 105.0
+Utilization = 0.815873
+
+
+//input 2
+10 3
+
+14 16 9
+13 19 18
+11 13 19
+13 8 17
+12 13 10
+13 16 9
+7 15 11
+5 11 14
+18 12 20
+21 7 16
+
+0 1 2 
+2 0 1
+1 2 0
+
+0 18 12 9 11 14 0 0 0 0
+0 0 0 0 0 0 0 19 16 0
+0 0 0 0 0 0 23 0 0 0
+0 0 0 0 0 0 0 27 23 0
+0 0 0 0 0 0 0 0 13 0
+0 0 0 0 0 0 0 15 0 0
+0 0 0 0 0 0 0 0 0 17
+0 0 0 0 0 0 0 0 0 11
+0 0 0 0 0 0 0 0 0 13
+0 0 0 0 0 0 0 0 0 0
+
+Before Crossover :
+1th Processor : 0 1 8 = 90
+2th Processor : 2 5 6 9 = 113
+3th Processor : 3 4 7 = 84
+Schedule Time = 113.0
+Utilization = 0.8466077
+
+After Mutation :
+1th Processor : 0 1 3 4 7 = 71
+2th Processor : 2 6 8 9 = 89
+3th Processor : 5 = 51
+Schedule Time = 89.0
+Utilization = 0.79026216
