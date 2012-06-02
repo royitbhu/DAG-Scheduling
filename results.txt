@@ -1,0 +1,262 @@
+//Output : 1
+task : 8
+1th Processor : 0 1 6 = 47
+2th Processor : 2 5 = 22
+3th Processor : 3 7 = 54
+4th Processor : 4 = 41
+5th Processor : 0 = 6
+Schedule Time = 54.0
+Utilization = 0.6296296
+SpeedUp = 3.2037036
+Efficiency = 0.64074075
+
+//Output : 2
+
+
+
+//Output : 3
+task : 16
+Efficiency = 0.46025103
+1th Processor : 4 7 10 15 = 170
+2th Processor : 9 11 = 157
+3th Processor : 1 8 12 = 135
+4th Processor : 0 2 5 13 = 168
+5th Processor : 3 6 14 = 231
+Schedule Time = 231.0
+Utilization = 0.74545455
+SpeedUp = 2.3809524
+Efficiency = 0.47619048
+
+//Output : 4
+
+
+//Output : 5
+task : 26
+1th Processor : 5 9 18 23 24 22 = 68
+2th Processor : 1 3 8 11 12 14 = 60
+3th Processor : 0 4 7 16 19 20 = 55
+4th Processor : 6 13 21 = 58
+5th Processor : 2 10 15 17 25 = 53
+Schedule Time = 68.0
+Utilization = 0.86470586
+SpeedUp = 4.279412
+Efficiency = 0.8558824
+
+//Output : 6
+task : 33
+1th Processor : 11 20 26 31 = 106
+2th Processor : 2 9 17 18 21 25 29 = 105
+3th Processor : 1 8 10 14 22 23 27 32 = 113
+4th Processor : 4 7 3 5 6 16 30 = 104
+5th Processor : 0 12 13 15 19 24 28 = 105
+Schedule Time = 113.0
+Utilization = 0.94336283
+SpeedUp = 3.5929203
+Efficiency = 0.71858406
+
+//Output : 7
+task : 37
+1th Processor : 4 12 17 18 23 29 30 = 514
+2th Processor : 5 6 7 8 14 28 34 36 35 = 615
+3th Processor : 9 13 22 33 = 567
+4th Processor : 0 2 10 11 15 24 21 27 32 = 545
+5th Processor : 1 3 19 16 20 25 26 31 = 493
+Schedule Time = 615.0
+Utilization = 0.8891057
+SpeedUp = 2.613008
+Efficiency = 0.5226016
+
+//Output : 8
+task : 44
+1th Processor : 10 4 6 8 13 27 34 = 125
+2th Processor : 0 2 9 11 21 22 25 26 30 43 = 119
+3th Processor : 1 3 14 18 23 28 31 32 33 37 38 40 39 = 158
+4th Processor : 5 7 12 16 20 24 41 = 119
+5th Processor : 15 17 19 29 35 36 42 = 146
+Schedule Time = 158.0
+Utilization = 0.8443038
+SpeedUp = 3.386076
+Efficiency = 0.6772152
+
+
+//Output : 9
+task : 49
+1th Processor : 1 4 11 5 9 19 27 32 37 39 46 = 155
+2th Processor : 0 2 7 14 16 26 28 34 43 47 = 175
+3th Processor : 6 13 20 21 22 35 40 42 44 45 48 = 186
+4th Processor : 8 10 3 12 23 25 29 31 33 38 = 133
+5th Processor : 15 17 18 24 30 36 41 = 147
+Schedule Time = 186.0
+Utilization = 0.855914
+SpeedUp = 3.204301
+Efficiency = 0.6408602
+
+//Output :10
+task : 51
+1th Processor : 2 3 13 17 26 28 32 33 34 36 38 48 = 678
+2th Processor : 1 6 9 12 18 19 22 29 44 45 47 = 725
+3th Processor : 4 10 11 16 20 24 25 27 30 39 43 46 = 717
+4th Processor : 0 14 21 23 37 42 50 = 685
+5th Processor : 5 7 8 15 31 35 40 41 49 = 718
+Schedule Time = 725.0
+Utilization = 0.9718621
+SpeedUp = 2.862069
+Efficiency = 0.5724138
+
+
+
+
+//No of Generations
+26 5
+
+19 3 3 19 15 
+14 5 12 2 16 
+20 13 14 2 5 
+6 17 14 16 3 
+16 19 4 3 20 
+15 7 2 19 8 
+2 2 21 4 11 
+18 2 14 8 13 
+12 4 18 4 4 
+14 21 13 9 2 
+8 17 19 13 9 
+6 10 18 18 2 
+20 9 20 13 6 
+2 3 15 5 3 
+21 15 11 17 14 
+14 7 9 18 12 
+2 5 7 19 19 
+10 21 5 14 9 
+6 21 21 7 8 
+14 14 8 10 20 
+9 14 6 3 9 
+11 12 3 18 17 
+5 18 2 5 8 
+10 13 9 3 18 
+10 16 20 19 20 
+11 18 16 7 6 
+
+0 1 1 1 1 
+1 0 1 1 1 
+1 1 0 1 1 
+1 1 1 0 1 
+1 1 1 1 0 
+
+0 0 0 0 0 0 0 0 0 0 0 4 8 0 0 0 3 0 0 0 1 3 5 0 9 0 
+0 0 0 0 0 0 0 0 0 0 0 7 0 0 10 0 10 9 0 0 5 7 3 2 0 0 
+0 0 0 0 0 0 0 0 0 0 0 8 0 9 0 0 8 0 8 0 4 0 2 10 0 0 
+0 0 0 0 0 0 0 0 0 0 0 6 0 0 2 0 2 7 8 10 10 5 0 4 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 0 4 0 9 2 0 1 10 0 0 2 10 0 4 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 10 0 0 0 0 0 0 0 0 0 10 
+0 0 0 0 0 0 0 0 0 0 0 5 0 0 5 0 0 10 4 9 0 10 8 0 0 4 
+0 0 0 0 0 0 0 0 0 0 0 0 3 0 5 5 0 1 0 0 0 0 0 0 8 0 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 7 0 2 0 0 8 0 5 3 0 10 7 
+0 0 0 0 0 0 0 0 0 0 0 0 0 6 0 0 5 0 6 1 4 2 0 10 8 2 
+0 0 0 0 0 0 0 0 0 0 0 10 0 10 1 0 0 0 4 0 6 0 2 6 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 5 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 5 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 3 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 7 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 8 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 4 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 7 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 4 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 8 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 8 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 8 0 0 0 
+
+
+
+gen =5
+1th Processor : 7 25 = 55
+2th Processor : 2 5 13 16 19 23 = 74
+3th Processor : 10 20 24 = 63
+4th Processor : 6 3 4 8 14 18 22 = 83
+5th Processor : 0 1 9 12 15 17 21 = 77
+Schedule Time = 83.0
+Utilization = 0.84819275
+SpeedUp = 3.5060241
+Efficiency = 0.70120484
+
+gen =10
+1th Processor : 7 8 15 16 17 19 = 70
+2th Processor : 0 3 12 18 = 54
+3th Processor : 5 13 20 21 22 = 76
+4th Processor : 4 6 9 10 23 24 = 59
+5th Processor : 1 2 11 14 25 = 61
+Schedule Time = 76.0
+Utilization = 0.84210527
+SpeedUp = 3.8289473
+Efficiency = 0.76578945
+
+gen =20
+1th Processor : 7 8 14 16 20 = 62
+2th Processor : 0 23 25 = 63
+3th Processor : 1 3 5 18 24 22 = 73
+4th Processor : 2 6 10 15 19 = 66
+5th Processor : 4 9 11 12 13 17 21 = 69
+Schedule Time = 73.0
+Utilization = 0.9123288
+SpeedUp = 3.9863014
+Efficiency = 0.7972603
+
+gen =50
+1th Processor : 6 23 24 25 = 70
+2th Processor : 3 8 15 19 21 = 64
+3th Processor : 0 2 4 13 17 = 54
+4th Processor : 1 5 12 16 20 = 56
+5th Processor : 7 9 10 11 14 18 = 50
+Schedule Time = 70.0
+Utilization = 0.84
+SpeedUp = 4.1571426
+Efficiency = 0.8314285
+
+gen =100
+1th Processor : 10 11 18 24 22 = 69
+2th Processor : 2 19 = 49
+3th Processor : 3 12 16 20 21 = 59
+4th Processor : 1 4 6 7 13 14 23 = 60
+5th Processor : 0 5 8 9 15 17 25 = 56
+Schedule Time = 69.0
+Utilization = 0.84927535
+SpeedUp = 4.2173915
+Efficiency = 0.8434783
+
+gen =200
+1th Processor : 7 12 16 19 = 54
+2th Processor : 1 3 13 14 15 = 53
+3th Processor : 0 4 5 9 11 20 21 22 = 68
+4th Processor : 2 10 17 23 25 = 53
+5th Processor : 6 8 18 24 = 58
+Schedule Time = 68.0
+Utilization = 0.84117645
+SpeedUp = 4.279412
+Efficiency = 0.85588235
+
+gen =500
+1th Processor : 6 16 17 21 24 = 56
+2th Processor : 1 5 8 11 13 14 = 64
+3th Processor : 4 7 19 20 25 = 58
+4th Processor : 2 3 15 22 = 72
+5th Processor : 0 9 10 12 18 23 = 58
+Schedule Time = 72.0
+Utilization = 0.85555553
+SpeedUp = 4.0416665
+Efficiency = 0.8083333
+
+gen =1000
+1th Processor : 2 6 13 17 18 23 = 55
+2th Processor : 1 3 11 24 = 54
+3th Processor : 0 4 9 12 15 19 22 = 70
+4th Processor : 5 7 20 21 25 = 60
+5th Processor : 8 10 14 16 = 65
+Schedule Time = 70.0
+Utilization = 0.8685714
+SpeedUp = 4.1571426
+Efficiency = 0.8314285
+
+

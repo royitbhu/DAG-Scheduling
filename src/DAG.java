@@ -209,6 +209,22 @@ public class DAG {
 		}*/
 	}
 	
+	static int serialOrder()
+	{
+		int i,k,sum=0,finalSum=0;
+		for(i=0;i<input1.inputProc.no_of_proc;i++)
+		{
+			sum=0;
+			for(k=0;k<input1.inputTask.no_of_task;k++)
+			{
+					sum+= input1.inputTask.exe_time[levelOrder[k]][i];	
+					
+			}
+			finalSum+=sum;
+		}
+		return finalSum/input1.inputProc.no_of_proc;
+	}
+	
 	//CREATE POPULATION OF 1000 CHROMOSOMES AND STORE IT IN CHROMOSOMES[][][]
 	static void createPopulation()
 	{	
@@ -643,7 +659,7 @@ public class DAG {
 			
 			float fitnessValue;
 			//NO OF GENERATIONS
-			int gen=5;
+			int gen=1000;
 			Random rand = new Random();
 			input1.takeinput();
 			
@@ -806,5 +822,8 @@ public class DAG {
 			}
 			System.out.println("Schedule Time = "+maxZ);
 			System.out.println("Utilization = "+sum/(input1.inputProc.no_of_proc*maxZ));
+			float speedup = (float)serialOrder()/maxZ;
+			System.out.println("SpeedUp = "+speedup);
+			System.out.println("Efficiency = "+speedup/input1.inputProc.no_of_proc);
 		}
 }	
